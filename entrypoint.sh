@@ -8,6 +8,9 @@ if [ ! -f /var/lib/docker-borg/ssh/ssh_host_rsa_key ]; then
     mv /etc/ssh/ssh*key* /var/lib/docker-borg/ssh/
 fi
 
+# Ensure correct permissions for ssh keys
+chmod -R og-rwx /var/lib/docker-borg/ssh/
+
 ln -sf /var/lib/docker-borg/ssh/* /etc/ssh > /dev/null 2>&1
 
 if [ -n "${BORG_UID}" ]; then

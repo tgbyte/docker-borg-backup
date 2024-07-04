@@ -1,4 +1,4 @@
-FROM tgbyte/ubuntu:20.04
+FROM tgbyte/ubuntu:24.04
 
 ARG BORG_VERSION
 
@@ -19,6 +19,7 @@ RUN set -x \
         python3-setuptools \
         python3-setuptools-scm \
     && rm -f /etc/ssh/ssh_host_* \
+    && python3 --version \
     && pip3 install -v "borgbackup==${BORG_VERSION}" \
     && apt-get remove -y --purge \
         build-essential \

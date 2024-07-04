@@ -10,8 +10,12 @@ RUN set -x \
         libacl1-dev \
         liblz4-1 \
         liblz4-dev \
-        libssl1.1 \
+        libssl3t64 \
         libssl-dev \
+        libxxhash0 \
+        libxxhash-dev \
+        libzstd1 \
+        libzstd-dev \
         openssh-server \
         python3 \
         python3-pip \
@@ -20,12 +24,14 @@ RUN set -x \
         python3-setuptools-scm \
     && rm -f /etc/ssh/ssh_host_* \
     && python3 --version \
-    && pip3 install -v "borgbackup==${BORG_VERSION}" \
+    && pip3 install --break-system-packages -v "borgbackup==${BORG_VERSION}" \
     && apt-get remove -y --purge \
         build-essential \
         libacl1-dev \
         liblz4-dev \
         libssl-dev \
+        libxxhash-dev \
+        libzstd-dev \
     && apt-get autoremove -y --purge \
     && adduser --uid 500 --disabled-password --gecos "Borg Backup" --quiet borg \
     && mkdir -p /var/run/sshd /var/backups/borg /var/lib/docker-borg/ssh mkdir /home/borg/.ssh \

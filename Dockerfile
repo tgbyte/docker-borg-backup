@@ -33,6 +33,7 @@ RUN set -x \
         libxxhash-dev \
         libzstd-dev \
     && apt-get autoremove -y --purge \
+    && userdel -r ubuntu \
     && adduser --uid 500 --disabled-password --gecos "Borg Backup" --quiet borg \
     && mkdir -p /var/run/sshd /var/backups/borg /var/lib/docker-borg/ssh mkdir /home/borg/.ssh \
     && chown borg.borg /var/backups/borg /home/borg/.ssh \

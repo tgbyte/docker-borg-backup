@@ -36,7 +36,7 @@ RUN set -x \
     && userdel -r ubuntu \
     && adduser --uid 500 --disabled-password --gecos "Borg Backup" --quiet borg \
     && mkdir -p /var/run/sshd /var/backups/borg /var/lib/docker-borg/ssh mkdir /home/borg/.ssh \
-    && chown borg.borg /var/backups/borg /home/borg/.ssh \
+    && chown borg:borg /var/backups/borg /home/borg/.ssh \
     && chmod 700 /home/borg/.ssh \
     && rm -rf /var/lib/apt/lists/*
 

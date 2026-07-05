@@ -1,9 +1,10 @@
-FROM tgbyte/ubuntu:24.04
+FROM ubuntu:26.04
 
 ARG BORG_VERSION
 
 RUN set -x \
     && apt-get update -qq \
+    && apt-get upgrade -y -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -qq -y \
         build-essential \
         libacl1 \
@@ -37,6 +38,8 @@ RUN set -x \
     && mkdir -p /var/run/sshd /var/backups/borg /var/lib/docker-borg/ssh mkdir /home/borg/.ssh \
     && chown borg.borg /var/backups/borg /home/borg/.ssh \
     && chmod 700 /home/borg/.ssh \
+    && apt-get autoremove -y \
+    && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*
 
 RUN set -x \

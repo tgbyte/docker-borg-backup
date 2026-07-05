@@ -4,5 +4,4 @@ include:
 
 variables:
   BUILD_IMAGE_SCRIPT: .gitlab-ci/build-image.sh
-  BUILD_MANIFEST_SCRIPT: .gitlab-ci/build-manifest.sh
   MULTIARCH: 1
